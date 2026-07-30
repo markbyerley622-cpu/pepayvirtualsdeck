@@ -468,6 +468,215 @@ export function IntelligenceAndValue() {
   )
 }
 
+/* ═══════════════════════════════ 08 · the economics of a $1.81 job ═══════ */
+
+const PHASES = ["Request", "Negotiate", "Fund", "Submit", "Evaluate", "Settle"]
+
+/**
+ * Six coordination steps for one $1.81 job, then the same value as a stream.
+ *
+ * Framed as maturation, never as criticism. One-shot settlement is the correct
+ * way to start an economy — it is how you establish trust between parties that
+ * have none. The point is only that it was designed for a different unit size
+ * than the one this economy actually runs at.
+ */
+export function MicroJobCost() {
+  return (
+    <div className="mx-auto flex w-full max-w-[980px] flex-col gap-[clamp(1.4rem,3.4vh,2.6rem)]">
+      {/* one job, six steps */}
+      <div className="flex flex-col gap-[clamp(0.7rem,1.8vh,1.2rem)]">
+        <div className="flex items-baseline gap-3">
+          <span className="num text-[clamp(1.3rem,2.6vw,2.5rem)] font-semibold text-fg">
+            $1.81
+          </span>
+          <span className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-fg-mute">
+            the average completed job
+          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2">
+          {PHASES.map((p, i) => (
+            <div key={p} className="flex items-center gap-1.5">
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + i * 0.1, duration: 0.5, ease: EASE }}
+                className="rounded-md border border-line-2 bg-white/[0.04] px-[clamp(0.5rem,1vw,0.9rem)] py-[clamp(0.35rem,0.9vh,0.6rem)] text-[clamp(0.68rem,0.92vw,0.92rem)] whitespace-nowrap text-fg-dim"
+              >
+                {p}
+              </motion.span>
+              {i < PHASES.length - 1 ? (
+                <span className="text-[10px] text-fg-faint">→</span>
+              ) : null}
+            </div>
+          ))}
+        </div>
+
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-fg-mute"
+        >
+          Six coordination steps, repeated for every payment.
+        </motion.span>
+      </div>
+
+      <div className="rule h-px w-full" />
+
+      {/* the same value, continuous */}
+      <div className="flex flex-col gap-[clamp(0.7rem,1.8vh,1.2rem)]">
+        <div className="flex items-baseline gap-3">
+          <span className="text-[clamp(1.3rem,2.6vw,2.5rem)] font-semibold tracking-[-0.035em] text-pep-200">
+            continuous
+          </span>
+          <span className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-fg-mute">
+            the same value, over time
+          </span>
+        </div>
+
+        <div className="relative h-[clamp(28px,4.5vh,44px)]">
+          <svg viewBox="0 0 1000 44" preserveAspectRatio="none" className="h-full w-full">
+            {[11, 22, 33].map((y, n) => (
+              <g key={y}>
+                <line x1="0" y1={y} x2="1000" y2={y} stroke="rgba(255,255,255,0.07)" strokeWidth="2" />
+                <line
+                  x1="0" y1={y} x2="1000" y2={y}
+                  stroke="#60a5fa" strokeWidth="2" strokeDasharray="5 7"
+                  style={{
+                    animation: "flow 1.05s linear infinite",
+                    animationDelay: `${n * 0.18}s`,
+                    filter: "drop-shadow(0 0 5px rgba(96,165,250,0.8))",
+                  }}
+                />
+              </g>
+            ))}
+          </svg>
+        </div>
+
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-pep-300"
+        >
+          Opened once. No coordination cost per payment.
+        </motion.span>
+      </div>
+    </div>
+  )
+}
+
+/* ══════════════════════════════ 11 · what Virtuals gets ═══════════════════ */
+
+const GROWTH = [
+  "Viable economics at any job size",
+  "More agent services",
+  "More completed jobs",
+  "More agent revenue",
+  "Higher aGDP",
+]
+
+/**
+ * An ascending staircase with a feedback return, not a ring — slides 5 and 10
+ * already use circular geometry, and a third cycle would read as repetition.
+ * Virtuals' metric sits at the top; Pepay appears nowhere on this slide.
+ */
+export function GrowthStair() {
+  return (
+    <div className="mx-auto w-full max-w-[900px]">
+      <div className="flex items-end justify-between gap-[clamp(0.3rem,0.9vw,0.8rem)]">
+        {GROWTH.map((g, i) => {
+          const last = i === GROWTH.length - 1
+          const height = 34 + i * 16 // percent of the block area
+          return (
+            <motion.div
+              key={g}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 + i * 0.13, duration: 0.75, ease: EASE }}
+              className="flex flex-1 flex-col items-center gap-2"
+            >
+              <div
+                className={
+                  "flex w-full items-end justify-center rounded-t-xl border-x border-t px-1.5 pb-2 " +
+                  (last
+                    ? "border-pep-500/45 bg-gradient-to-t from-pep-500/[0.16] to-pep-500/[0.04]"
+                    : "border-line-2 bg-white/[0.03]")
+                }
+                style={{ height: `${height}%`, minHeight: "clamp(46px,8vh,110px)" }}
+              />
+              <span
+                className={
+                  "text-center text-[clamp(0.62rem,0.86vw,0.88rem)] leading-snug " +
+                  (last ? "font-medium text-pep-200" : "text-fg-mute")
+                }
+              >
+                {g}
+              </span>
+            </motion.div>
+          )
+        })}
+      </div>
+
+      {/* the return: higher aGDP funds the next generation of agents */}
+      <div className="relative mt-2 h-[clamp(26px,4vh,40px)]">
+        <svg viewBox="0 0 1000 40" preserveAspectRatio="none" className="h-full w-full">
+          <path
+            d="M985 2 V26 Q985 36 972 36 H28 Q15 36 15 26 V2"
+            fill="none" stroke="rgba(255,255,255,0.09)" strokeWidth="1.6"
+          />
+          <path
+            d="M985 2 V26 Q985 36 972 36 H28 Q15 36 15 26 V2"
+            fill="none" stroke="#60a5fa" strokeWidth="1.6" strokeDasharray="6 9"
+            style={{
+              animation: "flow 1.1s linear infinite",
+              filter: "drop-shadow(0 0 5px rgba(96,165,250,0.8))",
+            }}
+          />
+        </svg>
+      </div>
+      <p className="mt-1 text-center text-[clamp(0.68rem,0.86vw,0.88rem)] text-fg-faint">
+        which funds the next generation of agents
+      </p>
+    </div>
+  )
+}
+
+/* ══════════════════════════════════ 12 · the ask ══════════════════════════ */
+
+const STEPS = [
+  { n: "01", t: "Deploy", s: "The Pepay streaming primitive, on the chain you choose" },
+  { n: "02", t: "Connect", s: "One ACP-compatible agent workflow. Nothing migrates" },
+  { n: "03", t: "Measure", s: "Volume, recurring revenue, retention, job economics" },
+]
+
+export function AskSteps() {
+  return (
+    <div className="mx-auto grid w-full max-w-[960px] gap-2.5 md:grid-cols-3">
+      {STEPS.map((s, i) => (
+        <motion.div
+          key={s.n}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 + i * 0.13, duration: 0.75, ease: EASE }}
+          className="flex flex-col gap-2.5 rounded-2xl border border-pep-500/26 bg-pep-500/[0.05] px-[clamp(1rem,1.9vw,1.7rem)] py-[clamp(1rem,2.3vh,1.7rem)]"
+        >
+          <span className="num text-[clamp(10px,0.85vw,11.5px)] tracking-[0.16em] text-pep-300">
+            {s.n}
+          </span>
+          <span className="text-[clamp(1.05rem,1.75vw,1.7rem)] font-semibold tracking-[-0.035em] text-fg">
+            {s.t}
+          </span>
+          <span className="text-[clamp(0.72rem,0.9vw,0.9rem)] leading-relaxed text-fg-mute">
+            {s.s}
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
 /* ═══════════════════════════════════════ 09 · value never stops ═══════════ */
 
 /** All five are economic functions. "Billing" rather than "Subscriptions" —

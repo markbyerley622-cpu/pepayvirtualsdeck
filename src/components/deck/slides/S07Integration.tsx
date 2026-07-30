@@ -33,8 +33,8 @@ export function S07Integration() {
         visual={<IntelligenceAndValue />}
         cite={
           <Cite>
-            ACP enables agent commerce. Pepay enables the financial relationships
-            that follow. x402 is the bridge between them
+            x402 and ERC-8183 move value between agents. Pepay carries the
+            relationships that persist after the transaction settles
           </Cite>
         }
       />
