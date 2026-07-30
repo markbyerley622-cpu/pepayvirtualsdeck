@@ -120,12 +120,22 @@ export function StackFlow() {
 
   return (
     <div className="mx-auto flex w-full max-w-[760px] flex-col items-center">
+      {/* What the two halves add up to, named before either of them */}
+      <motion.span
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.8, ease: EASE }}
+        className="mb-[clamp(0.9rem,2.4vh,1.7rem)] text-[clamp(10px,0.95vw,12px)] font-medium tracking-[0.2em] text-fg-mute uppercase"
+      >
+        Agent economy
+      </motion.span>
+
       {layers.map((l, li) => (
         <div key={l.head} className="flex w-full flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 + li * 0.55, duration: 0.9, ease: EASE }}
+            transition={{ delay: 0.5 + li * 0.5, duration: 0.9, ease: EASE }}
             className={
               "flex w-full flex-col items-center gap-[clamp(0.9rem,2.2vh,1.5rem)] rounded-2xl border px-[clamp(1.2rem,2.6vw,2.6rem)] py-[clamp(1.2rem,3vh,2.2rem)] " +
               (l.tone === "v"
@@ -155,7 +165,7 @@ export function StackFlow() {
                   key={it}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.75 + li * 0.55 + i * 0.08, duration: 0.6 }}
+                  transition={{ delay: 0.8 + li * 0.5 + i * 0.08, duration: 0.6 }}
                   className="text-[clamp(0.85rem,1.35vw,1.35rem)] text-fg-dim"
                 >
                   {it}
@@ -164,17 +174,16 @@ export function StackFlow() {
             </div>
           </motion.div>
 
+          {/* A plus, never an arrow — these two compose, neither reports to the other */}
           {li === 0 ? (
-            <svg
-              viewBox="0 0 20 40"
-              className="my-[clamp(0.5rem,1.6vh,1.1rem)] h-[clamp(28px,4.5vh,44px)] w-5"
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: EASE }}
+              className="my-[clamp(0.55rem,1.8vh,1.2rem)] text-[clamp(1.1rem,2vw,1.9rem)] leading-none font-light text-fg-mute"
             >
-              <line
-                x1="10" y1="0" x2="10" y2="40"
-                stroke="rgba(96,165,250,0.8)" strokeWidth="1.8" strokeDasharray="5 6"
-                style={{ animation: "flow 1.1s linear infinite" }}
-              />
-            </svg>
+              +
+            </motion.span>
           ) : null}
         </div>
       ))}
@@ -339,19 +348,19 @@ export function FinancialLife() {
 
 /* ═══════════════════════════════════════ 06 · the value primitives ════════ */
 
-const OPS = [
-  { t: "Earn", s: "recurring and metered revenue" },
-  { t: "Manage", s: "reserves that work, not idle" },
-  { t: "Move", s: "any token, any chain, per second" },
-  { t: "Pay", s: "salaries, vendors, contributors" },
-  { t: "Settle", s: "into the currency you choose" },
-]
-
 /**
- * Five verbs, not five products — primitives are what founders think in.
- * "Manage" rather than "Hold": the missing capability is running economic
- * activity, and holding is the one part of that agents can already do.
+ * Each verb carries exactly one grounding noun. Enough for a founder to answer
+ * "what does Pepay actually provide?" without turning the slide into a feature
+ * list. "Allocate" rather than "Manage" — allocation is an economic act, and
+ * management is what the noun underneath already implies.
  */
+const OPS = [
+  { t: "Earn", s: "Payments" },
+  { t: "Allocate", s: "Treasury" },
+  { t: "Move", s: "Streaming" },
+  { t: "Pay", s: "Commerce" },
+  { t: "Settle", s: "Global rails" },
+]
 export function ValueOperations() {
   return (
     <div className="mx-auto flex w-full max-w-[1000px] flex-col items-center gap-[clamp(1.4rem,3.4vh,2.6rem)]">
@@ -364,10 +373,10 @@ export function ValueOperations() {
             transition={{ delay: 0.45 + i * 0.1, duration: 0.7, ease: EASE }}
             className="flex flex-col gap-2 rounded-2xl border border-pep-500/26 bg-pep-500/[0.05] px-[clamp(0.9rem,1.6vw,1.4rem)] py-[clamp(0.9rem,2vh,1.4rem)]"
           >
-            <span className="text-[clamp(1.05rem,1.7vw,1.6rem)] font-semibold tracking-[-0.035em] text-pep-100">
+            <span className="text-[clamp(1.05rem,1.75vw,1.7rem)] font-semibold tracking-[-0.035em] text-pep-100">
               {o.t}
             </span>
-            <span className="text-[clamp(0.7rem,0.88vw,0.88rem)] leading-relaxed text-fg-mute">
+            <span className="text-[clamp(0.68rem,0.85vw,0.86rem)] font-medium tracking-[0.1em] text-fg-mute uppercase">
               {o.s}
             </span>
           </motion.div>

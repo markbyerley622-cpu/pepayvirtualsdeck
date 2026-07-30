@@ -50,7 +50,7 @@ export function S10Close() {
           transition={{ delay: 2.55, duration: 0.9, ease: EASE }}
           className="max-w-[24ch] text-[clamp(1.05rem,2.2vw,2.2rem)] leading-snug font-medium tracking-[-0.035em] text-fg"
         >
-          The infrastructure behind Agentic GDP.
+          The financial infrastructure behind Agentic GDP.
         </motion.p>
 
         <motion.div

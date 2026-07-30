@@ -29,12 +29,13 @@ export function S07Integration() {
         headline={
           <Versus a="Virtuals coordinates intelligence." b="Pepay coordinates value." />
         }
-        support="Two halves of one economy, built to run side by side."
+        support="From agent transactions to agent economies."
         visual={<IntelligenceAndValue />}
         cite={
           <Cite source="whitepaper.virtuals.io">
-            EconomyOS gives every agent a wallet, card, email, token and compute.
-            ACP runs Request → Negotiation → Transaction → Evaluation, settled in USDC
+            ACP runs Request → Negotiation → Transaction → Evaluation over x402,
+            settled in USDC. Pepay speaks the same x402 dialect — and carries the
+            flows that outlive a single transaction
           </Cite>
         }
       />

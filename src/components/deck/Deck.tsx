@@ -117,7 +117,7 @@ export function Deck() {
                   transition={{ duration: 0.6, ease: EASE }}
                   className="flex items-center gap-3.5 overflow-hidden"
                 >
-                  <VirtualsIcon size={22} />
+                  <VirtualsIcon size={26} />
                   <span className="text-[12.5px] text-fg-faint">×</span>
                 </motion.div>
               )}
