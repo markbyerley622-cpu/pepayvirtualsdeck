@@ -383,16 +383,24 @@ export function ValueOperations() {
         ))}
       </div>
 
-      {/* Attribution, not a headline — the primitives lead, the name follows. */}
+      {/* Attribution, not a headline — the primitives lead, the name follows.
+          The line beneath is the deck's only credibility anchor: enough for a
+          founder to know this is real infrastructure, with no product pitch and
+          no claim that needs defending. */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.9 }}
-        className="flex items-center gap-2.5"
+        className="flex flex-col items-center gap-2"
       >
-        <PepayMark size={22} float={false} glow={false} />
-        <span className="text-[clamp(0.82rem,1.05vw,1.05rem)] font-medium tracking-[-0.02em] text-fg-dim">
-          Pepay Labs
+        <div className="flex items-center gap-2.5">
+          <PepayMark size={22} float={false} glow={false} />
+          <span className="text-[clamp(0.82rem,1.05vw,1.05rem)] font-medium tracking-[-0.02em] text-fg-dim">
+            Pepay Labs
+          </span>
+        </div>
+        <span className="text-[clamp(0.68rem,0.85vw,0.86rem)] text-fg-faint">
+          Non-custodial payment infrastructure for EVM economies
         </span>
       </motion.div>
     </div>
@@ -462,7 +470,9 @@ export function IntelligenceAndValue() {
 
 /* ═══════════════════════════════════════ 09 · value never stops ═══════════ */
 
-const LOOP = ["Revenue", "Treasury", "Payroll", "Subscriptions", "Settlement"]
+/** All five are economic functions. "Billing" rather than "Subscriptions" —
+ *  a subscription is a product; billing is what the loop actually does. */
+const LOOP = ["Revenue", "Treasury", "Payroll", "Billing", "Settlement"]
 
 /**
  * A linear cycle that visibly wraps: the pulse exits the right edge and

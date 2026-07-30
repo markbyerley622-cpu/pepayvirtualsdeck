@@ -25,8 +25,8 @@ export function S04Gaps() {
         visual={<MergeIntoStream />}
         cite={
           <Cite source="ERC-8183, the agentic commerce standard">
-            Machine payments today are still discrete: a job opens, funds, submits,
-            completes — then ends. Duration is not part of the model
+            Machine payments today are discrete. A job completes, then ends —
+            duration is not part of the model
           </Cite>
         }
       />

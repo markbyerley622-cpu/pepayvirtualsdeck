@@ -7,12 +7,14 @@ import { CursorLight } from "@/components/ui/mouse"
 import { StackFlow } from "../visuals"
 
 /**
- * Deliberately the emptiest slide in the deck.
+ * The positioning sentence, stated exactly, on the emptiest slide in the deck.
  *
- * This is where the fit has to become obvious, and clarity is what persuades a
- * founder — not evidence. The quadrant grid and the citation that used to live
- * here were both removed: nothing on this slide makes a challengeable claim, so
- * nothing on it needs a footnote.
+ * "Financial lives" is deliberately the same phrase as slide 5 — that slide
+ * defines the term, this one applies it to the partnership. The callback is
+ * what makes the conclusion feel earned rather than asserted.
+ *
+ * Clarity persuades founders, not evidence: nothing here makes a challengeable
+ * claim, so nothing here carries a footnote.
  */
 export function S08Market() {
   return (
@@ -28,7 +30,7 @@ export function S08Market() {
       <OneIdea
         align="center"
         headline={
-          <Versus a="Virtuals creates agent businesses." b="Pepay makes them economically active." />
+          <Versus a="Virtuals creates autonomous businesses." b="Pepay gives them financial lives." />
         }
         support="You solved capital formation. Together we solve cash flow."
         visual={<StackFlow />}

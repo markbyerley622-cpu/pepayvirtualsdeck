@@ -32,10 +32,9 @@ export function S07Integration() {
         support="From agent transactions to agent economies."
         visual={<IntelligenceAndValue />}
         cite={
-          <Cite source="whitepaper.virtuals.io">
-            ACP runs Request → Negotiation → Transaction → Evaluation over x402,
-            settled in USDC. Pepay speaks the same x402 dialect — and carries the
-            flows that outlive a single transaction
+          <Cite>
+            ACP enables agent commerce. Pepay enables the financial relationships
+            that follow. x402 is the bridge between them
           </Cite>
         }
       />
