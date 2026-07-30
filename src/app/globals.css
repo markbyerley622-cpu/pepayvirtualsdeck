@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #04060a;
+  --color-ink: #05070b;
+  --color-panel: #0a0e15;
+  --color-panel-2: #0e131c;
+  --color-line: rgba(255, 255, 255, 0.07);
+  --color-line-2: rgba(255, 255, 255, 0.12);
+
+  --color-fg: #f4f7fb;
+  --color-fg-dim: #aeb8c7;
+  --color-fg-mute: #6b7789;
+  --color-fg-faint: #454f5f;
+
+  --color-pep-900: #0b2a75;
+  --color-pep-700: #1544c4;
+  --color-pep-500: #2563eb;
+  --color-pep-400: #3b82f6;
+  --color-pep-300: #60a5fa;
+  --color-pep-200: #93c5fd;
+  --color-pep-100: #dbeafe;
+
+  --color-bnb: #f0b90b;
+  --color-bnb-dim: #a8810a;
+
+  --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI Variable Display", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace,
+    "Segoe UI Mono", Menlo, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+
+  ::selection {
+    background: var(--color-pep-500);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  /* Display type — tight tracking is what makes it read as keynote, not slide-deck */
+  .display {
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    font-weight: 600;
+  }
+
+  .display-tight {
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+    font-weight: 600;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.035em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      180deg,
+      var(--color-fg) 0%,
+      rgba(244, 247, 251, 0.62) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-pep {
+    background: linear-gradient(
+      110deg,
+      var(--color-pep-200) 0%,
+      var(--color-pep-400) 45%,
+      var(--color-pep-700) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Hairline panel — the single surface treatment used across the whole deck */
+  .surface {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035) 0%,
+      rgba(255, 255, 255, 0.012) 100%
+    );
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(12px);
+  }
+
+  .surface-lift {
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+      0 24px 60px -24px rgba(0, 0, 0, 0.9);
+  }
+
+  .glow-pep {
+    box-shadow:
+      0 0 0 1px rgba(37, 99, 235, 0.28),
+      0 0 44px -8px rgba(37, 99, 235, 0.5);
+  }
+
+  .glow-bnb {
+    box-shadow:
+      0 0 0 1px rgba(240, 185, 11, 0.25),
+      0 0 44px -10px rgba(240, 185, 11, 0.35);
+  }
+
+  .rule {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-line-2) 12%,
+      var(--color-line-2) 88%,
+      transparent
+    );
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Promote animated layers to their own compositor layer so motion stays at
+     display refresh rate instead of repainting the slide on every frame. */
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.06);
+  }
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
