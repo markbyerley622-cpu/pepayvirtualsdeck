@@ -70,9 +70,11 @@ export function OneIdea({
         className={cn(
           "display-tight",
           layout === "split"
-            ? "text-[clamp(2.1rem,5.2vw,5rem)]"
-            : "text-[clamp(2.3rem,6.4vw,6.6rem)]",
-          centered ? "max-w-[22ch]" : "max-w-[19ch]",
+            ? "text-[clamp(2.1rem,5vw,4.7rem)]"
+            : "text-[clamp(2.2rem,5.8vw,5.9rem)]",
+          // wide enough that a two-clause headline breaks at the clause rather
+          // than mid-phrase; `text-wrap: balance` handles the rest
+          centered ? "max-w-[26ch]" : "max-w-[21ch]",
         )}
       >
         {headline}
@@ -84,7 +86,7 @@ export function OneIdea({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.34, duration: 0.9, ease: EASE }}
           className={cn(
-            "mt-[clamp(1.3rem,3.4vh,2.6rem)] max-w-[46ch] leading-snug text-fg-mute",
+            "copy-pretty mt-[clamp(1.3rem,3.4vh,2.6rem)] max-w-[58ch] leading-snug text-fg-mute",
             layout === "split"
               ? "text-[clamp(0.95rem,1.28vw,1.35rem)]"
               : "text-[clamp(1rem,1.5vw,1.65rem)]",

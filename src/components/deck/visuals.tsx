@@ -482,19 +482,19 @@ const PHASES = ["Request", "Negotiate", "Fund", "Submit", "Evaluate", "Settle"]
  */
 export function MicroJobCost() {
   return (
-    <div className="mx-auto flex w-full max-w-[980px] flex-col gap-[clamp(1.4rem,3.4vh,2.6rem)]">
+    <div className="mx-auto flex w-full max-w-[980px] flex-col items-center gap-[clamp(1.4rem,3.4vh,2.6rem)]">
       {/* one job, six steps */}
-      <div className="flex flex-col gap-[clamp(0.7rem,1.8vh,1.2rem)]">
+      <div className="flex w-full flex-col items-center gap-[clamp(0.7rem,1.8vh,1.2rem)]">
         <div className="flex items-baseline gap-3">
-          <span className="num text-[clamp(1.3rem,2.6vw,2.5rem)] font-semibold text-fg">
+          <span className="num text-[clamp(2rem,4.2vw,4rem)] font-semibold text-fg">
             $1.81
           </span>
-          <span className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-fg-mute">
+          <span className="text-[clamp(0.75rem,0.98vw,1rem)] text-fg-mute">
             the average completed job
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2">
+        <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-2">
           {PHASES.map((p, i) => (
             <div key={p} className="flex items-center gap-1.5">
               <motion.span
@@ -525,17 +525,17 @@ export function MicroJobCost() {
       <div className="rule h-px w-full" />
 
       {/* the same value, continuous */}
-      <div className="flex flex-col gap-[clamp(0.7rem,1.8vh,1.2rem)]">
+      <div className="flex w-full flex-col items-center gap-[clamp(0.7rem,1.8vh,1.2rem)]">
         <div className="flex items-baseline gap-3">
-          <span className="text-[clamp(1.3rem,2.6vw,2.5rem)] font-semibold tracking-[-0.035em] text-pep-200">
+          <span className="text-[clamp(2rem,4.2vw,4rem)] font-semibold tracking-[-0.035em] text-pep-200">
             continuous
           </span>
-          <span className="text-[clamp(0.72rem,0.92vw,0.92rem)] text-fg-mute">
+          <span className="text-[clamp(0.75rem,0.98vw,1rem)] text-fg-mute">
             the same value, over time
           </span>
         </div>
 
-        <div className="relative h-[clamp(28px,4.5vh,44px)]">
+        <div className="relative h-[clamp(28px,4.5vh,44px)] w-full">
           <svg viewBox="0 0 1000 44" preserveAspectRatio="none" className="h-full w-full">
             {[11, 22, 33].map((y, n) => (
               <g key={y}>
@@ -583,38 +583,56 @@ const GROWTH = [
  * Virtuals' metric sits at the top; Pepay appears nowhere on this slide.
  */
 export function GrowthStair() {
+  // Explicit fractions of a fixed-height track. Percentage heights inside an
+  // auto-height flex parent resolve against nothing and collapse, which is what
+  // made an earlier version of this render as a descending staircase.
+  const STEP = [0.34, 0.5, 0.66, 0.82, 1]
+
   return (
     <div className="mx-auto w-full max-w-[900px]">
-      <div className="flex items-end justify-between gap-[clamp(0.3rem,0.9vw,0.8rem)]">
+      <div className="flex justify-between gap-[clamp(0.3rem,0.9vw,0.8rem)]">
         {GROWTH.map((g, i) => {
           const last = i === GROWTH.length - 1
-          const height = 34 + i * 16 // percent of the block area
           return (
-            <motion.div
-              key={g}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 + i * 0.13, duration: 0.75, ease: EASE }}
-              className="flex flex-1 flex-col items-center gap-2"
-            >
+            <div key={g} className="flex flex-1 flex-col">
+              {/* fixed-height track keeps every bar on the same baseline */}
+              <div className="flex h-[clamp(80px,17vh,190px)] w-full items-end">
+                <motion.div
+                  initial={{ scaleY: 0, opacity: 0 }}
+                  animate={{ scaleY: 1, opacity: 1 }}
+                  transition={{ delay: 0.45 + i * 0.13, duration: 0.8, ease: EASE }}
+                  style={{ height: `${STEP[i] * 100}%`, originY: 1 }}
+                  className={
+                    "w-full rounded-t-lg " +
+                    (last
+                      ? "bg-gradient-to-t from-pep-700/40 to-pep-400/70 shadow-[0_0_28px_-6px_rgba(59,130,246,0.9)]"
+                      : "bg-gradient-to-t from-white/[0.04] to-white/[0.16]")
+                  }
+                />
+              </div>
+
+              {/* baseline rule the bars sit on */}
               <div
                 className={
-                  "flex w-full items-end justify-center rounded-t-xl border-x border-t px-1.5 pb-2 " +
-                  (last
-                    ? "border-pep-500/45 bg-gradient-to-t from-pep-500/[0.16] to-pep-500/[0.04]"
-                    : "border-line-2 bg-white/[0.03]")
+                  "h-px w-full " + (last ? "bg-pep-400/70" : "bg-white/15")
                 }
-                style={{ height: `${height}%`, minHeight: "clamp(46px,8vh,110px)" }}
               />
-              <span
-                className={
-                  "text-center text-[clamp(0.62rem,0.86vw,0.88rem)] leading-snug " +
-                  (last ? "font-medium text-pep-200" : "text-fg-mute")
-                }
-              >
-                {g}
-              </span>
-            </motion.div>
+
+              {/* fixed-height label row so wrapping never shifts a bar */}
+              <div className="flex h-[clamp(2.4rem,5vh,3.2rem)] items-start justify-center pt-2">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 + i * 0.13, duration: 0.6 }}
+                  className={
+                    "text-center text-[clamp(0.6rem,0.84vw,0.86rem)] leading-snug " +
+                    (last ? "font-medium text-pep-200" : "text-fg-mute")
+                  }
+                >
+                  {g}
+                </motion.span>
+              </div>
+            </div>
           )
         })}
       </div>

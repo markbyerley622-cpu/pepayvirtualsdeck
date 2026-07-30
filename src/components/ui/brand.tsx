@@ -10,7 +10,10 @@ import { useParallax } from "./mouse"
  * Everything else in the deck picks it up automatically — the hero mark,
  * the product-stack slide, and the closing slide all read from `PEPAY_MARK`.
  */
-export const USE_FROG = true
+// Set back to true once public/pepay-frog.png exists. Left false so the deck
+// loads with a clean console — the fallback works either way, but it costs a
+// 404 on every slide that renders the mark.
+export const USE_FROG = false
 export const PEPAY_MARK = USE_FROG ? "/pepay-frog.png" : "/pepay-mark.png"
 const PEPAY_FALLBACK = "/pepay-mark.png"
 

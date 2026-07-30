@@ -58,17 +58,29 @@
 }
 
 @layer utilities {
-  /* Display type — tight tracking is what makes it read as keynote, not slide-deck */
+  /* Display type — tight tracking is what makes it read as keynote, not slide-deck.
+     Line-height sits just under 1 rather than at 0.92: below that, descenders on
+     y/g/p clip against the line box. `text-wrap: balance` evens out multi-line
+     headlines so no clause is left with a one-word widow. */
   .display {
     letter-spacing: -0.04em;
-    line-height: 0.95;
+    line-height: 1;
     font-weight: 600;
+    text-wrap: balance;
+    padding-bottom: 0.06em;
   }
 
   .display-tight {
     letter-spacing: -0.045em;
-    line-height: 0.92;
+    line-height: 0.98;
     font-weight: 600;
+    text-wrap: balance;
+    padding-bottom: 0.06em;
+  }
+
+  /* Keeps supporting lines from orphaning their last word onto a line alone */
+  .copy-pretty {
+    text-wrap: pretty;
   }
 
   .eyebrow {
