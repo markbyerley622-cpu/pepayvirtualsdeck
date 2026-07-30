@@ -25,7 +25,7 @@ export function S06Stack() {
       <OneIdea
         align="center"
         headline={<Versus a="Every economy needs" b="an execution layer for value." />}
-        support="Earn, manage, move, pay, settle — the five verbs Pepay already ships."
+        support="Earn, manage, move, pay, settle — the primitives of an agent economy."
         visual={<ValueOperations />}
       />
     </Slide>

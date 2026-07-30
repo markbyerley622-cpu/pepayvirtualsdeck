@@ -84,7 +84,7 @@ export function OneIdea({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.34, duration: 0.9, ease: EASE }}
           className={cn(
-            "mt-[clamp(1.1rem,2.8vh,2.2rem)] max-w-[46ch] leading-snug text-fg-mute",
+            "mt-[clamp(1.3rem,3.4vh,2.6rem)] max-w-[46ch] leading-snug text-fg-mute",
             layout === "split"
               ? "text-[clamp(0.95rem,1.28vw,1.35rem)]"
               : "text-[clamp(1rem,1.5vw,1.65rem)]",
@@ -99,7 +99,7 @@ export function OneIdea({
   const Footnote = cite ? (
     <div
       className={cn(
-        "mt-[clamp(1.2rem,3vh,2.4rem)] max-w-[74ch]",
+        "mt-[clamp(1.6rem,4vh,3rem)] max-w-[74ch]",
         centered && "mx-auto text-center",
       )}
     >
@@ -140,7 +140,7 @@ export function OneIdea({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.46, duration: 1.1, ease: EASE }}
-          className="mt-[clamp(2.2rem,6vh,4.5rem)] w-full"
+          className="mt-[clamp(2.6rem,7.5vh,5.5rem)] w-full"
         >
           <Parallax depth={6}>{visual}</Parallax>
         </motion.div>

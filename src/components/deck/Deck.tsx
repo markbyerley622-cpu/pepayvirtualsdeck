@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { EASE } from "@/components/ui/primitives"
 import { MouseProvider } from "@/components/ui/mouse"
+import { VirtualsIcon } from "@/components/ui/brand"
 import { SLIDES, VIRTUALS_REVEAL } from "./slides"
 
 export function Deck() {
@@ -116,12 +117,7 @@ export function Deck() {
                   transition={{ duration: 0.6, ease: EASE }}
                   className="flex items-center gap-3.5 overflow-hidden"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/virtuals-logo-dark.svg"
-                    alt="Virtuals Protocol"
-                    className="h-[18px] w-auto"
-                  />
+                  <VirtualsIcon size={22} />
                   <span className="text-[12.5px] text-fg-faint">×</span>
                 </motion.div>
               )}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { EASE } from "@/components/ui/primitives"
-import { PepayMark, VirtualsLogo } from "@/components/ui/brand"
+import { PepayMark, VirtualsIcon, VirtualsLogo } from "@/components/ui/brand"
 
 /* ════════════════════════════════════ 02 · worker becomes a business ══════ */
 
@@ -61,117 +61,120 @@ export function WorkerToBusiness() {
 /* ════════════════════════════════════ 03 · the anatomy of a business ══════ */
 
 const ANATOMY = [
-  { t: "Revenue", s: "money coming in", owner: "p" as const },
-  { t: "Expenses", s: "money going out", owner: "p" as const },
-  { t: "Treasury", s: "money held", owner: "p" as const },
-  { t: "Capital", s: "money raised", owner: "v" as const },
+  { t: "Revenue", s: "money coming in" },
+  { t: "Expenses", s: "money going out" },
+  { t: "Treasury", s: "money held" },
+  { t: "Capital", s: "money raised" },
 ]
 
 /**
- * The bridge of the deck, shown twice.
- *
- * Slide 3 poses it neutrally — these are simply the four things every business
- * has. Slide 5 of narrative distance later, slide 8 shows the identical grid with
- * ownership attributed, and the partnership explains itself without a sentence.
+ * The bridge of the deck. Four quadrants, no attribution — the frame is posed
+ * here and answered on slide 8, where the stack makes ownership obvious without
+ * needing labels on this one.
  */
-export function BusinessAnatomy({ attributed = false }: { attributed?: boolean }) {
+export function BusinessAnatomy() {
   return (
-    <div className="mx-auto flex w-full max-w-[860px] flex-col gap-2.5">
-      <div className="grid grid-cols-2 gap-2.5">
-        {ANATOMY.map((a, i) => {
-          const mine = attributed && a.owner === "p"
-          const theirs = attributed && a.owner === "v"
-          return (
-            <motion.div
-              key={a.t}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 + i * 0.11, duration: 0.7, ease: EASE }}
-              className={
-                "relative flex flex-col gap-1.5 overflow-hidden rounded-2xl border px-[clamp(0.9rem,1.7vw,1.6rem)] py-[clamp(0.85rem,2vh,1.5rem)] transition-colors duration-700 " +
-                (mine
-                  ? "border-pep-500/40 bg-pep-500/[0.07]"
-                  : theirs
-                    ? "border-[#44BCC3]/40 bg-[#44BCC3]/[0.06]"
-                    : "border-line bg-white/[0.025]")
-              }
-            >
-              <span
-                className={
-                  "text-[clamp(1rem,1.7vw,1.6rem)] font-medium tracking-[-0.03em] " +
-                  (theirs ? "text-[#7FD8DC]" : mine ? "text-pep-100" : "text-fg")
-                }
-              >
-                {a.t}
-              </span>
-              <span className="text-[clamp(0.72rem,0.9vw,0.9rem)] text-fg-mute">
-                {a.s}
-              </span>
-
-              {attributed ? (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.05 + i * 0.09, duration: 0.6 }}
-                  className={
-                    "absolute top-[clamp(0.85rem,2vh,1.5rem)] right-[clamp(0.9rem,1.7vw,1.6rem)] text-[clamp(9.5px,0.86vw,11px)] font-medium tracking-[0.12em] uppercase " +
-                    (theirs ? "text-[#7FD8DC]" : "text-pep-300")
-                  }
-                >
-                  {theirs ? "Virtuals" : "Pepay"}
-                </motion.span>
-              ) : null}
-            </motion.div>
-          )
-        })}
-      </div>
+    <div className="mx-auto grid w-full max-w-[860px] grid-cols-2 gap-3">
+      {ANATOMY.map((a, i) => (
+        <motion.div
+          key={a.t}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 + i * 0.11, duration: 0.7, ease: EASE }}
+          className="flex flex-col gap-2 rounded-2xl border border-line bg-white/[0.025] px-[clamp(1rem,2vw,1.9rem)] py-[clamp(1rem,2.4vh,1.8rem)]"
+        >
+          <span className="text-[clamp(1.05rem,1.8vw,1.7rem)] font-medium tracking-[-0.03em] text-fg">
+            {a.t}
+          </span>
+          <span className="text-[clamp(0.74rem,0.92vw,0.92rem)] text-fg-mute">
+            {a.s}
+          </span>
+        </motion.div>
+      ))}
     </div>
   )
 }
 
-/* ══════════════════════════════ 08 · the stack, quietly ═══════════════════ */
+/* ══════════════════════════════ 08 · the stack ════════════════════════════ */
 
 /**
- * Small enough to be a footnote, specific enough to prove we read their docs.
- * Not a technical slide — a technical aside on a narrative slide.
+ * The whole partnership as one image: their layer, an arrow, ours.
+ *
+ * Large and near-empty on purpose. This slide is where the fit becomes obvious,
+ * and clarity is what persuades a founder — a denser diagram would only make
+ * them read instead of understand.
  */
-export function MiniArchitecture() {
-  const cols = [
-    { head: "Virtuals", items: ["Identity", "Agents", "Jobs", "ACP"], tone: "v" as const },
-    { head: "Pepay", items: ["Payments", "Treasury", "Settlement", "Streaming"], tone: "p" as const },
+export function StackFlow() {
+  const layers = [
+    {
+      head: "Virtuals",
+      items: ["Identity", "Agents", "Jobs", "ACP"],
+      tone: "v" as const,
+    },
+    {
+      head: "Pepay",
+      items: ["Revenue", "Expenses", "Treasury", "Settlement"],
+      tone: "p" as const,
+    },
   ]
 
   return (
-    <div className="mx-auto flex items-center justify-center gap-[clamp(1rem,2.6vw,2.4rem)]">
-      {cols.map((c, ci) => (
-        <div key={c.head} className="flex items-center gap-[clamp(1rem,2.6vw,2.4rem)]">
-          <div className="flex flex-col items-center gap-1">
-            <span
-              className={
-                "text-[clamp(9.5px,0.82vw,10.5px)] font-medium tracking-[0.14em] uppercase " +
-                (c.tone === "v" ? "text-[#7FD8DC]" : "text-pep-300")
-              }
-            >
-              {c.head}
-            </span>
-            <div className="flex flex-wrap justify-center gap-1">
-              {c.items.map((it) => (
-                <span
+    <div className="mx-auto flex w-full max-w-[760px] flex-col items-center">
+      {layers.map((l, li) => (
+        <div key={l.head} className="flex w-full flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 + li * 0.55, duration: 0.9, ease: EASE }}
+            className={
+              "flex w-full flex-col items-center gap-[clamp(0.9rem,2.2vh,1.5rem)] rounded-2xl border px-[clamp(1.2rem,2.6vw,2.6rem)] py-[clamp(1.2rem,3vh,2.2rem)] " +
+              (l.tone === "v"
+                ? "border-[#44BCC3]/28 bg-[#44BCC3]/[0.05]"
+                : "border-pep-500/30 bg-pep-500/[0.06]")
+            }
+          >
+            <div className="flex items-center gap-2.5">
+              {l.tone === "v" ? (
+                <VirtualsIcon size={26} />
+              ) : (
+                <PepayMark size={24} float={false} glow={false} />
+              )}
+              <span
+                className={
+                  "text-[clamp(1.15rem,2.2vw,2.1rem)] font-semibold tracking-[-0.035em] " +
+                  (l.tone === "v" ? "text-[#8FE0E4]" : "text-pep-100")
+                }
+              >
+                {l.head}
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-[clamp(1rem,2.4vw,2.2rem)] gap-y-2">
+              {l.items.map((it, i) => (
+                <motion.span
                   key={it}
-                  className={
-                    "rounded border px-1.5 py-[2px] text-[clamp(9px,0.78vw,10.5px)] " +
-                    (c.tone === "v"
-                      ? "border-[#44BCC3]/25 text-fg-mute"
-                      : "border-pep-500/30 text-fg-mute")
-                  }
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.75 + li * 0.55 + i * 0.08, duration: 0.6 }}
+                  className="text-[clamp(0.85rem,1.35vw,1.35rem)] text-fg-dim"
                 >
                   {it}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
-          {ci === 0 ? (
-            <span className="text-[clamp(10px,0.9vw,12px)] text-fg-faint">→</span>
+          </motion.div>
+
+          {li === 0 ? (
+            <svg
+              viewBox="0 0 20 40"
+              className="my-[clamp(0.5rem,1.6vh,1.1rem)] h-[clamp(28px,4.5vh,44px)] w-5"
+            >
+              <line
+                x1="10" y1="0" x2="10" y2="40"
+                stroke="rgba(96,165,250,0.8)" strokeWidth="1.8" strokeDasharray="5 6"
+                style={{ animation: "flow 1.1s linear infinite" }}
+              />
+            </svg>
           ) : null}
         </div>
       ))}
@@ -351,23 +354,38 @@ const OPS = [
  */
 export function ValueOperations() {
   return (
-    <div className="mx-auto grid w-full max-w-[1000px] gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
-      {OPS.map((o, i) => (
-        <motion.div
-          key={o.t}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 + i * 0.1, duration: 0.7, ease: EASE }}
-          className="flex flex-col gap-2 rounded-2xl border border-pep-500/26 bg-pep-500/[0.05] px-[clamp(0.9rem,1.6vw,1.4rem)] py-[clamp(0.9rem,2vh,1.4rem)]"
-        >
-          <span className="text-[clamp(1.05rem,1.7vw,1.6rem)] font-semibold tracking-[-0.035em] text-pep-100">
-            {o.t}
-          </span>
-          <span className="text-[clamp(0.7rem,0.88vw,0.88rem)] leading-relaxed text-fg-mute">
-            {o.s}
-          </span>
-        </motion.div>
-      ))}
+    <div className="mx-auto flex w-full max-w-[1000px] flex-col items-center gap-[clamp(1.4rem,3.4vh,2.6rem)]">
+      <div className="grid w-full gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+        {OPS.map((o, i) => (
+          <motion.div
+            key={o.t}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 + i * 0.1, duration: 0.7, ease: EASE }}
+            className="flex flex-col gap-2 rounded-2xl border border-pep-500/26 bg-pep-500/[0.05] px-[clamp(0.9rem,1.6vw,1.4rem)] py-[clamp(0.9rem,2vh,1.4rem)]"
+          >
+            <span className="text-[clamp(1.05rem,1.7vw,1.6rem)] font-semibold tracking-[-0.035em] text-pep-100">
+              {o.t}
+            </span>
+            <span className="text-[clamp(0.7rem,0.88vw,0.88rem)] leading-relaxed text-fg-mute">
+              {o.s}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Attribution, not a headline — the primitives lead, the name follows. */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.9 }}
+        className="flex items-center gap-2.5"
+      >
+        <PepayMark size={22} float={false} glow={false} />
+        <span className="text-[clamp(0.82rem,1.05vw,1.05rem)] font-medium tracking-[-0.02em] text-fg-dim">
+          Pepay Labs
+        </span>
+      </motion.div>
     </div>
   )
 }
@@ -428,51 +446,6 @@ export function IntelligenceAndValue() {
         <span className="text-[clamp(0.76rem,0.94vw,0.94rem)] text-fg-mute">
           Revenue, expenses, reserves, settlement — continuously.
         </span>
-      </div>
-    </div>
-  )
-}
-
-/* ══════════════════════════════ 08 · capital versus cash flow ═════════════ */
-
-const MAP = [
-  { v: "Agent Wallet", p: "Multi-token treasury" },
-  { v: "Agent Card", p: "Global payout & settlement" },
-  { v: "Jobs", p: "Payroll & recurring revenue" },
-  { v: "ACP", p: "Invoicing & multi-currency billing" },
-  { v: "Capital Markets", p: "Cash flow & streaming" },
-]
-
-export function StackMapping() {
-  return (
-    <div className="mx-auto w-full max-w-[900px]">
-      <div className="mb-2.5 grid grid-cols-[1fr_auto_1fr] items-center gap-[clamp(0.8rem,2vw,2rem)]">
-        <VirtualsLogo height={22} className="opacity-90" />
-        <span className="w-4" />
-        <div className="flex items-center gap-2 justify-self-end">
-          <PepayMark size={20} float={false} glow={false} />
-          <span className="text-[clamp(0.8rem,1vw,1rem)] font-medium tracking-[-0.02em] text-fg">
-            Pepay
-          </span>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        {MAP.map((r, i) => (
-          <motion.div
-            key={r.v}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 + i * 0.1, duration: 0.65, ease: EASE }}
-            className="grid grid-cols-[1fr_auto_1fr] items-center gap-[clamp(0.8rem,2vw,2rem)] rounded-xl border border-line bg-white/[0.02] px-[clamp(0.9rem,1.8vw,1.6rem)] py-[clamp(0.6rem,1.4vh,1rem)]"
-          >
-            <span className="text-[clamp(0.82rem,1.08vw,1.1rem)] text-fg-dim">{r.v}</span>
-            <span className="text-[clamp(0.75rem,0.95vw,0.95rem)] text-fg-faint">+</span>
-            <span className="text-right text-[clamp(0.82rem,1.08vw,1.1rem)] font-medium text-pep-100">
-              {r.p}
-            </span>
-          </motion.div>
-        ))}
       </div>
     </div>
   )
@@ -570,7 +543,7 @@ export function FinaleWords() {
             key={w}
             initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 0.25 + i * 0.26, duration: 0.9, ease: EASE }}
+            transition={{ delay: 0.2 + i * 0.15, duration: 0.75, ease: EASE }}
             className={
               "display-tight text-[clamp(1.5rem,4.4vw,4.4rem)] " +
               (last ? "text-gradient-pep" : "text-gradient")

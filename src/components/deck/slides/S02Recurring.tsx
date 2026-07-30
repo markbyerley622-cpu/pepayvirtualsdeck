@@ -21,7 +21,7 @@ export function S02Recurring() {
       <OneIdea
         align="center"
         headline={<Versus a="Every autonomous worker" b="becomes an autonomous business." />}
-        support="The moment an agent earns, it must also hold, pay and settle."
+        support="And every business needs infrastructure."
         visual={<WorkerToBusiness />}
         cite={
           <Cite source="virtuals.io">

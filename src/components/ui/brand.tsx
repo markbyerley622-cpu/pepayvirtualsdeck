@@ -130,6 +130,25 @@ export function VirtualsLogo({
   )
 }
 
+/** The Virtuals symbol on its own — used where a wordmark would be too heavy. */
+export function VirtualsIcon({
+  size = 20,
+  className,
+}: {
+  size?: number
+  className?: string
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/virtuals-removebg-preview.png"
+      alt="Virtuals Protocol"
+      style={{ width: size, height: size }}
+      className={cn("object-contain", className)}
+    />
+  )
+}
+
 /**
  * The partnership lockup. Equal optical weight on both sides and a generous,
  * symmetrical gap — neither brand may read as subordinate to the other.

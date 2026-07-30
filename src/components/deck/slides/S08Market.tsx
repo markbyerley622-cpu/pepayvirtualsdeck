@@ -4,13 +4,15 @@ import { Slide } from "../Slide"
 import { OneIdea, Versus } from "../Layout"
 import { Particles, Spot } from "@/components/ui/aurora"
 import { CursorLight } from "@/components/ui/mouse"
-import { Cite } from "@/components/ui/primitives"
-import { BusinessAnatomy, MiniArchitecture } from "../visuals"
+import { StackFlow } from "../visuals"
 
 /**
- * The payoff for slide 3. The identical four-quadrant grid returns, now with
- * ownership attributed — Capital is theirs, the other three are ours. The
- * partnership explains itself without a sentence of argument.
+ * Deliberately the emptiest slide in the deck.
+ *
+ * This is where the fit has to become obvious, and clarity is what persuades a
+ * founder — not evidence. The quadrant grid and the citation that used to live
+ * here were both removed: nothing on this slide makes a challengeable claim, so
+ * nothing on it needs a footnote.
  */
 export function S08Market() {
   return (
@@ -29,19 +31,7 @@ export function S08Market() {
           <Versus a="Virtuals creates agent businesses." b="Pepay makes them economically active." />
         }
         support="You solved capital formation. Together we solve cash flow."
-        visual={
-          <div className="flex flex-col gap-[clamp(1.2rem,3vh,2.2rem)]">
-            <BusinessAnatomy attributed />
-            <MiniArchitecture />
-          </div>
-        }
-        cite={
-          <Cite source="whitepaper.virtuals.io">
-            Agent Card covers &ldquo;purchases, subscriptions, and any
-            merchant-facing flow&rdquo; — the spend side. Pepay adds earn, manage
-            and settle. Fiat connectivity is roadmap, not live today
-          </Cite>
-        }
+        visual={<StackFlow />}
       />
     </Slide>
   )
