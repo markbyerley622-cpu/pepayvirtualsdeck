@@ -85,7 +85,8 @@ export function Slide({
         className={cn(
           "relative z-10 flex h-full w-full items-center justify-center",
           "px-[clamp(1.5rem,5.2vw,7rem)]",
-          "pt-[clamp(5rem,9vh,7.5rem)] pb-[clamp(4.5rem,8vh,6.5rem)]",
+          // top padding clears the header, which grew with the larger marks
+          "pt-[clamp(6.5rem,11vh,8.5rem)] pb-[clamp(4.5rem,8vh,6.5rem)]",
           className,
         )}
       >

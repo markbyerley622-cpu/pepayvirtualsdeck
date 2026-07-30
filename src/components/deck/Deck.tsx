@@ -117,8 +117,8 @@ export function Deck() {
                   transition={{ duration: 0.6, ease: EASE }}
                   className="flex items-center gap-3.5 overflow-hidden"
                 >
-                  <VirtualsIcon size={26} />
-                  <span className="text-[12.5px] text-fg-faint">×</span>
+                  <VirtualsIcon size={44} />
+                  <span className="text-[14px] text-fg-faint">×</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -127,9 +127,9 @@ export function Deck() {
             <img
               src="/pepay-mark.png"
               alt="Pepay Labs"
-              className="h-[18px] w-[18px] rounded-[5px] shadow-[0_0_16px_-4px_rgba(37,99,235,0.9)]"
+              className="h-[28px] w-[28px] rounded-[8px] shadow-[0_0_18px_-4px_rgba(37,99,235,0.9)]"
             />
-            <span className="text-[12.5px] font-medium tracking-tight text-fg-dim">
+            <span className="text-[15px] font-medium tracking-tight text-fg-dim">
               Pepay
             </span>
           </div>

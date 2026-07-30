@@ -167,10 +167,12 @@ export function Lockup({
         className,
       )}
     >
-      <VirtualsLogo height={size} />
+      {/* The wordmark is set larger than its nominal size so it holds the same
+          optical weight as the Pepay mark plus its wordmark beside it. */}
+      <VirtualsLogo height={size * 1.4} />
       <span
         aria-hidden
-        className="h-[clamp(1.4rem,2.6vw,2.4rem)] w-px shrink-0 bg-line-2"
+        className="h-[clamp(1.6rem,3vw,2.8rem)] w-px shrink-0 bg-line-2"
       />
       <div className="flex items-center gap-[clamp(0.6rem,1.2vw,1rem)]">
         <PepayMark size={size} float={false} parallax={-8} />

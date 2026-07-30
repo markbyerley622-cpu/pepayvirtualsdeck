@@ -145,9 +145,9 @@ export function StackFlow() {
           >
             <div className="flex items-center gap-2.5">
               {l.tone === "v" ? (
-                <VirtualsIcon size={26} />
+                <VirtualsIcon size={46} />
               ) : (
-                <PepayMark size={24} float={false} glow={false} />
+                <PepayMark size={38} float={false} glow={false} />
               )}
               <span
                 className={
@@ -414,7 +414,7 @@ export function IntelligenceAndValue() {
   return (
     <div className="grid w-full gap-[clamp(1rem,2.2vw,2rem)] md:grid-cols-2">
       <div className="flex flex-col gap-[clamp(0.9rem,2.2vh,1.6rem)] rounded-2xl border border-line bg-white/[0.02] p-[clamp(1.1rem,2.2vw,2rem)]">
-        <VirtualsLogo height={24} />
+        <VirtualsLogo height={40} />
         <span className="text-[clamp(1.05rem,1.8vw,1.7rem)] font-medium tracking-[-0.03em] text-fg">
           Coordinates intelligence
         </span>
@@ -436,8 +436,8 @@ export function IntelligenceAndValue() {
 
       <div className="flex flex-col gap-[clamp(0.9rem,2.2vh,1.6rem)] rounded-2xl border border-pep-500/28 bg-pep-500/[0.05] p-[clamp(1.1rem,2.2vw,2rem)]">
         <div className="flex items-center gap-2.5">
-          <PepayMark size={24} float={false} glow={false} />
-          <span className="text-[clamp(0.9rem,1.15vw,1.15rem)] font-medium tracking-[-0.03em] text-fg">
+          <PepayMark size={34} float={false} glow={false} />
+          <span className="text-[clamp(1.05rem,1.5vw,1.5rem)] font-medium tracking-[-0.03em] text-fg">
             Pepay
           </span>
         </div>
